@@ -21,3 +21,7 @@ snapctl set registration.proposed-serial="\"$(date -u)\""
 
 snapctl set device-service.url="https://serial-vault-partners.canonical.com/v1/"
 snapctl set device-service.headers="{\"api-key\": \"$MODEL_APIKEY\"}"
+
+# Set unique hostname to enable easy clustering
+hostname=$(uuidgen)
+echo "$hostname" > /etc/hostname

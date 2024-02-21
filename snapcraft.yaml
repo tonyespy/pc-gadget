@@ -17,6 +17,7 @@ icon: icon.png
 
 hooks:
   prepare-device:
+    plugs: [hostname-control]
     environment:
       # If you are forking and building your own gadget:
       # define your model's API key here
@@ -87,3 +88,10 @@ parts:
       # We need to install directly in the project dir as snapcraft checks there
       # for gadget.yaml instead of looking first at the prime folder.
       install -m 644 gadget-"$CRAFT_TARGET_ARCH".yaml "$CRAFT_PROJECT_DIR"/gadget.yaml
+  uuidgen:
+    plugin: nil
+    stage-packages:
+      - uuid-runtime
+    stage:
+      - usr/bin/uuidgen
+      - usr/share/doc/uuid-runtime/copyright
